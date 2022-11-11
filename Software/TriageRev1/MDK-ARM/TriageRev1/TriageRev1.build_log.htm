@@ -1,0 +1,123 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.27.1.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Aykut Keles, EO Medical Devices, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.27.1.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.27.1.0
+Dialog DLL:      DARMCM1.DLL V1.19.2.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.6.0
+Dialog DLL:      TARMCM1.DLL V1.14.1.0
+ 
+<h2>Project:</h2>
+D:\GitHub\Triage\Software\TriageRev1\MDK-ARM\TriageRev1.uvprojx
+Project File Date:  11/09/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'TriageRev1'
+assembling startup_stm32f030x8.s...
+compiling stm32f0xx_hal_tim_ex.c...
+compiling stm32f0xx_it.c...
+compiling stm32f0xx_hal_tim.c...
+compiling stm32f0xx_hal_msp.c...
+compiling stm32f0xx_hal_uart_ex.c...
+compiling stm32f0xx_hal_rcc_ex.c...
+compiling main.c...
+..\..\TriageRev1\masimo.h(38): warning:  #1295-D: Deprecated declaration initPacket - give arg types
+  void initPacket();
+..\..\TriageRev1\masimo.h(41): warning:  #1295-D: Deprecated declaration getPacketData - give arg types
+  void getPacketData();
+..\..\TriageRev1\masimo.h(43): warning:  #1295-D: Deprecated declaration checkStatus - give arg types
+  void checkStatus();
+..\..\TriageRev1\masimo.h(44): warning:  #1295-D: Deprecated declaration requestBoardInfo - give arg types
+  void requestBoardInfo();
+..\..\TriageRev1\masimo.h(45): warning:  #1295-D: Deprecated declaration unlockBoard - give arg types
+  void unlockBoard();
+..\..\TriageRev1\masimo.h(46): warning:  #1295-D: Deprecated declaration programmingAck - give arg types
+  void programmingAck();
+..\..\TriageRev1\masimo.h(47): warning:  #1295-D: Deprecated declaration requestSpo2 - give arg types
+  void requestSpo2();
+..\..\TriageRev1\masimo.h(48): warning:  #1295-D: Deprecated declaration requestPulseRate - give arg types
+  void requestPulseRate();
+..\..\TriageRev1\masimo.h(49): warning:  #1295-D: Deprecated declaration requestPerfusionIndex - give arg types
+  void requestPerfusionIndex();
+../Src/main.c: 9 warnings, 0 errors
+compiling masimo.c...
+..\masimo.h(38): warning:  #1295-D: Deprecated declaration initPacket - give arg types
+  void initPacket();
+..\masimo.h(41): warning:  #1295-D: Deprecated declaration getPacketData - give arg types
+  void getPacketData();
+..\masimo.h(43): warning:  #1295-D: Deprecated declaration checkStatus - give arg types
+  void checkStatus();
+..\masimo.h(44): warning:  #1295-D: Deprecated declaration requestBoardInfo - give arg types
+  void requestBoardInfo();
+..\masimo.h(45): warning:  #1295-D: Deprecated declaration unlockBoard - give arg types
+  void unlockBoard();
+..\masimo.h(46): warning:  #1295-D: Deprecated declaration programmingAck - give arg types
+  void programmingAck();
+..\masimo.h(47): warning:  #1295-D: Deprecated declaration requestSpo2 - give arg types
+  void requestSpo2();
+..\masimo.h(48): warning:  #1295-D: Deprecated declaration requestPulseRate - give arg types
+  void requestPulseRate();
+..\masimo.h(49): warning:  #1295-D: Deprecated declaration requestPerfusionIndex - give arg types
+  void requestPerfusionIndex();
+..\masimo.c(222): warning:  #1-D: last line of file ends without a newline
+  }
+..\masimo.c(26): warning:  #550-D: variable "dataCounter"  was set but never used
+  static uint32_t dataCounter = 0;
+..\masimo.c: 11 warnings, 0 errors
+compiling stm32f0xx_hal.c...
+compiling stm32f0xx_hal_rcc.c...
+compiling stm32f0xx_hal_uart.c...
+compiling stm32f0xx_hal_pwr_ex.c...
+compiling stm32f0xx_hal_pwr.c...
+compiling stm32f0xx_hal_i2c_ex.c...
+compiling stm32f0xx_hal_cortex.c...
+compiling stm32f0xx_hal_dma.c...
+compiling system_stm32f0xx.c...
+compiling stm32f0xx_hal_gpio.c...
+compiling stm32f0xx_hal_flash.c...
+compiling stm32f0xx_hal_flash_ex.c...
+compiling stm32f0xx_hal_i2c.c...
+linking...
+Program Size: Code=15160 RO-data=632 RW-data=72 ZI-data=2096  
+FromELF: creating hex file...
+"TriageRev1\TriageRev1.axf" - 0 Error(s), 20 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F0xx_DFP.2.1.1.pack
+                Keil.STM32F0xx_DFP.2.1.1
+                STMicroelectronics STM32F0 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_TriageRev1
+  C:\Users\aykut\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include
+  C:\Users\aykut\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.1\Drivers\CMSIS\Device\ST\STM32F0xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.6.0
+Build Time Elapsed:  00:00:03
+</pre>
+</body>
+</html>

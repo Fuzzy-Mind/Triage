@@ -1,0 +1,27 @@
+--cpu Cortex-M0
+"triagerev1\startup_stm32f030x8.o"
+"triagerev1\main.o"
+"triagerev1\stm32f0xx_it.o"
+"triagerev1\stm32f0xx_hal_msp.o"
+"triagerev1\masimo.o"
+"triagerev1\stm32f0xx_hal_tim.o"
+"triagerev1\stm32f0xx_hal_tim_ex.o"
+"triagerev1\stm32f0xx_hal_uart.o"
+"triagerev1\stm32f0xx_hal_uart_ex.o"
+"triagerev1\stm32f0xx_hal_rcc.o"
+"triagerev1\stm32f0xx_hal_rcc_ex.o"
+"triagerev1\stm32f0xx_hal.o"
+"triagerev1\stm32f0xx_hal_i2c.o"
+"triagerev1\stm32f0xx_hal_i2c_ex.o"
+"triagerev1\stm32f0xx_hal_gpio.o"
+"triagerev1\stm32f0xx_hal_dma.o"
+"triagerev1\stm32f0xx_hal_cortex.o"
+"triagerev1\stm32f0xx_hal_pwr.o"
+"triagerev1\stm32f0xx_hal_pwr_ex.o"
+"triagerev1\stm32f0xx_hal_flash.o"
+"triagerev1\stm32f0xx_hal_flash_ex.o"
+"triagerev1\system_stm32f0xx.o"
+--strict --scatter "TriageRev1\TriageRev1.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "TriageRev1.map" -o TriageRev1\TriageRev1.axf
