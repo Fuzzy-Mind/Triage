@@ -9,7 +9,7 @@ extern "C" {
 #define WIFI_SSID "ErtuncOzcanKat2"
 #define WIFI_PASSWORD "ertarge2017"
 
-// Raspberry Pi Mosquitto MQTT Broker
+// Digitalocean Mosquitto MQTT Broker
 #define MQTT_HOST IPAddress(46, 101, 94, 104)
 // For a cloud MQTT broker, type the domain name
 //#define MQTT_HOST "triageserver.com"
@@ -120,8 +120,7 @@ void setup() {
   //mqttClient.onUnsubscribe(onMqttUnsubscribe);
   mqttClient.onPublish(onMqttPublish);
   mqttClient.setServer(MQTT_HOST, MQTT_PORT);
-  // If your broker requires authentication (username and password), set them below
-  mqttClient.setCredentials("triage", "ak47");
+  mqttClient.setCredentials("triage", "ak47");    // Mqtt uesrname & password
   connectToWifi();
 }
 
@@ -133,12 +132,9 @@ void loop() {
   memset(sensorData, 0, 16);
   if(Serial2.available()>0){
     incomingByte = Serial2.read();
-    if(incomingByte == 164){
-      //Serial.println("Paket Basi");
+    if(incomingByte == 164){                      // Start of message
       Serial2.readBytes(sensorData, 9);
-      if(sensorData[8] == 74){
-        //Serial.println("Paket Dogru");
-        
+      if(sensorData[8] == 74){        
         sSpo2 = (sensorData[0]<<8)+sensorData[1];
         sPulseRate = (sensorData[2]<<8)+sensorData[3];
         sPerfusionIndex = (sensorData[4]<<8)+sensorData[5];
@@ -148,7 +144,6 @@ void loop() {
         temp = float(sTemp)/100;
         spo2 = float(sSpo2)/10;
         perfusionindex = float(sPerfusionIndex)/1000;
-        
       }
       else{
         Serial.println("Paket Hatalı");
@@ -164,10 +159,7 @@ void loop() {
     nibpIncoming = SerialPort.read();
     if(nibpIncoming == 0xf1){
       SerialPort.readBytes(nibpData, 9);
-      /*for(int i=0; i<9; i++){
-        Serial.print("Nibp Gelen : ");
-        Serial.println(nibpData[i]);
-      }*/
+
       if(nibpData[8] == 0x1f){
         systolic = (nibpData[1] << 8) | (nibpData[0]);
         diastolic = (nibpData[3] << 8) | (nibpData[2]);
@@ -198,10 +190,6 @@ void loop() {
   if (currentMillis - previousMillis >= interval) {
     // Save the last time a new reading was published
     previousMillis = currentMillis;
-    // New temperature readings
-    // Temperature in Celsius degrees
-    
-    /**/
 
     uint16_t packetIdPub1 = mqttClient.publish(MQTT_PUB_TEMP, 1, true, String(temp).c_str());                            
     Serial.printf("Publishing on topic %s at QoS 1, packetId: ", MQTT_PUB_TEMP);
@@ -223,25 +211,23 @@ void loop() {
     Serial.println(packetIdPub4);
     Serial.printf("Message: %.2f /n", perfusionindex);
 
-    if(nibpStatus != ""){
-      uint16_t packetIdPub5 = mqttClient.publish(MQTT_PUB_NIBPSTATUS, 1, true, nibpStatus.c_str());
-      Serial.println(nibpStatus);
-  
-      uint16_t packetIdPub6 = mqttClient.publish(MQTT_PUB_NIBPSYSTOLIC, 1, true, String(systolic).c_str());
-      Serial.print("Systolic : ");
-      Serial.println(systolic);
-      
-      uint16_t packetIdPub7 = mqttClient.publish(MQTT_PUB_NIBPDIASTOLIC, 1, true, String(diastolic).c_str());
-      Serial.print("Diastolic : ");
-      Serial.println(diastolic);
-     
-      uint16_t packetIdPub8 = mqttClient.publish(MQTT_PUB_NIBPMAP, 1, true, String(meanap).c_str());
-      Serial.print("Mean Arterial Pressure : ");
-      Serial.println(meanap);
-      
-      uint16_t packetIdPub9 = mqttClient.publish(MQTT_PUB_NIBPPR, 1, true, String(pr).c_str());
-      Serial.print("Pulse Rate : ");
-      Serial.println(pr);
-    }
+    uint16_t packetIdPub5 = mqttClient.publish(MQTT_PUB_NIBPSTATUS, 1, true, nibpStatus.c_str());
+    Serial.println(nibpStatus);
+
+    uint16_t packetIdPub6 = mqttClient.publish(MQTT_PUB_NIBPSYSTOLIC, 1, true, String(systolic).c_str());
+    Serial.print("Systolic : ");
+    Serial.println(systolic);
+    
+    uint16_t packetIdPub7 = mqttClient.publish(MQTT_PUB_NIBPDIASTOLIC, 1, true, String(diastolic).c_str());
+    Serial.print("Diastolic : ");
+    Serial.println(diastolic);
+    
+    uint16_t packetIdPub8 = mqttClient.publish(MQTT_PUB_NIBPMAP, 1, true, String(meanap).c_str());
+    Serial.print("Mean Arterial Pressure : ");
+    Serial.println(meanap);
+    
+    uint16_t packetIdPub9 = mqttClient.publish(MQTT_PUB_NIBPPR, 1, true, String(pr).c_str());
+    Serial.print("Pulse Rate : ");
+    Serial.println(pr);
   }
 }

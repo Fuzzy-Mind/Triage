@@ -1,3 +1,6 @@
+/*
+ * Measure every 5 minutes.
+ */
 #include "SoftwareSerial.h"
 
 int incomingByte=0;
